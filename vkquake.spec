@@ -8,8 +8,7 @@ URL:            https://github.com/Novum/vkQuake
 Source:         https://github.com/Novum/vkQuake/archive/%{version}/vkQuake-%{version}.tar.gz
 Source100:      appdata.xml
 Source101:      %{name}.desktop
-# PATCH-FIX-UPSTREAM
-Patch0:         0001-Remove-use-of-VK_DYNAMIC_STATE_RANGE_SIZE.patch
+
 BuildRequires:  vulkan-devel
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  pkgconfig(mad)
