@@ -1,5 +1,5 @@
 Name:           vkquake
-Version:        1.13.0
+Version:        1.13.1
 Release:        1
 Summary:        Quake 1 port using Vulkan instead of OpenGL for rendering
 License:        GPL-2.0-or-later
@@ -19,7 +19,8 @@ BuildRequires:  pkgconfig(sdl2)
 BuildRequires:  pkgconfig(vorbis)
 
 %description
-vkQuake is a Quake 1 port using Vulkan instead of OpenGL for rendering. It is based on the popular QuakeSpasm port and runs all mods compatible with it like Arcane Dimensions or In The Shadows.
+vkQuake is a Quake 1 port using Vulkan instead of OpenGL for rendering. 
+It is based on the popular QuakeSpasm port and runs all mods compatible with it like Arcane Dimensions or In The Shadows.
 Game data must be placed in ~/.vkquake/id1 .
 
 %prep
