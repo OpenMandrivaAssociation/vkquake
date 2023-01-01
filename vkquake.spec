@@ -45,6 +45,7 @@ rm -rf Windows
     USE_CODEC_MIKMOD=1 \
     USE_CODEC_UMX=1 \
     USE_CODEC_MP3=0
+strip Quake/vkquake
 # stuff
 %make_build -C Misc/vq_pak
 
