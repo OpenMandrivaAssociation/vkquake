@@ -20,6 +20,7 @@ BuildRequires:  pkgconfig(sdl2)
 BuildRequires:  pkgconfig(vorbis)
 BuildRequires:	pkgconfig(libmodplug)
 BuildRequires:  cmake(zopfli)
+BuildRequires:  zopfli
 
 %description
 vkQuake is a Quake 1 port using Vulkan instead of OpenGL for rendering. 
