@@ -1,3 +1,5 @@
+%define _empty_manifest_terminate_build 0
+
 Name:           vkquake
 Version:        1.22.3
 Release:        1
@@ -20,6 +22,7 @@ BuildRequires:  pkgconfig(sdl2)
 BuildRequires:  pkgconfig(vorbis)
 BuildRequires:	pkgconfig(libmodplug)
 BuildRequires:  cmake(zopfli)
+BuildRequires:  zopfli
 
 %description
 vkQuake is a Quake 1 port using Vulkan instead of OpenGL for rendering. 
