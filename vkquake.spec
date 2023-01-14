@@ -1,3 +1,5 @@
+%define _empty_manifest_terminate_build 0
+
 Name:           vkquake
 Version:        1.22.3
 Release:        1
