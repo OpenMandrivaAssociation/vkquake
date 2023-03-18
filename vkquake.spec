@@ -1,28 +1,30 @@
 %define _empty_manifest_terminate_build 0
+%global optflags %{optflags} -O3 -Wno-error=unused-but-set-variable
 
-Name:           vkquake
-Version:        1.22.3
-Release:        1
-Summary:        Quake 1 port using Vulkan instead of OpenGL for rendering
-License:        GPL-2.0-or-later
-Group:          Games
-URL:            https://github.com/Novum/vkQuake
-Source:         https://github.com/Novum/vkQuake/archive/%{version}/vkQuake-%{version}.tar.gz
-Source100:      appdata.xml
-Source101:      %{name}.desktop
+Name:		vkquake
+Version:	1.30.1
+Release:	1
+Summary:	Quake 1 port using Vulkan instead of OpenGL for rendering
+License:	GPL-2.0-or-later
+Group:		Games
+URL:		https://github.com/Novum/vkQuake
+Source:		https://github.com/Novum/vkQuake/archive/%{version}/vkQuake-%{version}.tar.gz
+Source100:	appdata.xml
+Source101:	%{name}.desktop
 Patch0:		vkquake-compile.patch
 
-BuildRequires:  vulkan-devel
-BuildRequires:  pkgconfig(flac)
-BuildRequires:  pkgconfig(mad)
-BuildRequires:  pkgconfig(libmikmod)
-BuildRequires:  pkgconfig(opus)
-BuildRequires:  pkgconfig(opusfile)
-BuildRequires:  pkgconfig(sdl2)
-BuildRequires:  pkgconfig(vorbis)
+BuildRequires:	pkgconfig(vulkan)
+BuildRequires:	pkgconfig(flac)
+BuildRequires:	pkgconfig(mad)
+BuildRequires:	pkgconfig(libmikmod)
+BuildRequires:	pkgconfig(opus)
+BuildRequires:	pkgconfig(opusfile)
+BuildRequires:	pkgconfig(sdl2)
+BuildRequires:	pkgconfig(vorbis)
 BuildRequires:	pkgconfig(libmodplug)
-BuildRequires:  cmake(zopfli)
-BuildRequires:  zopfli
+BuildRequires:	cmake(zopfli)
+BuildRequires:	zopfli
+BuildRequires:	glslang
 
 %description
 vkQuake is a Quake 1 port using Vulkan instead of OpenGL for rendering. 
@@ -58,6 +60,9 @@ install -Dm644 Misc/vq_pak/vkquake.pak %{buildroot}%{_datadir}/games/%{name}/%{n
 install -D -p -m 644 Misc/vkQuake_512.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 install -D -p -m 644 %{SOURCE100} %{buildroot}%{_datadir}/appdata/%{name}.appdata.xml
 install -D -p -m 644 %{SOURCE101} %{buildroot}%{_datadir}/applications/%{name}.desktop
+
+%post
+printf '%s\n' "Please download data from https://www.libsdl.org/projects/quake/data/quakesw-1.0.6.tar.gz extract and place in ~/.vkquake/id1 "
 
 %files
 %license LICENSE.txt

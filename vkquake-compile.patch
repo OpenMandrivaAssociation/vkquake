@@ -1,113 +1,23 @@
-diff -up vkQuake-1.20.3/Quake/Makefile.omv~ vkQuake-1.20.3/Quake/Makefile
---- vkQuake-1.20.3/Quake/Makefile.omv~	2022-09-12 03:59:32.383898716 +0200
-+++ vkQuake-1.20.3/Quake/Makefile	2022-09-12 04:01:18.174397855 +0200
-@@ -10,15 +10,15 @@ DO_USERDIRS=0
+diff -Naur vkQuake-1.30.1/Quake/Makefile vkQuake-1.30.1.tpg/Quake/Makefile
+--- vkQuake-1.30.1/Quake/Makefile	2023-03-15 02:59:38.000000000 +0000
++++ vkQuake-1.30.1.tpg/Quake/Makefile	2023-03-18 13:55:36.635545656 +0000
+@@ -10,15 +10,15 @@
  
  ### Enable/Disable codecs for streaming music support
- USE_CODEC_WAVE=1
--USE_CODEC_FLAC=0
-+USE_CODEC_FLAC=1
- USE_CODEC_MP3=1
- USE_CODEC_VORBIS=1
--USE_CODEC_OPUS=0
-+USE_CODEC_OPUS=1
+ USE_CODEC_WAVE = 1
+-USE_CODEC_FLAC = 0
++USE_CODEC_FLAC = 1
+ USE_CODEC_MP3 = 1
+ USE_CODEC_VORBIS = 1
+-USE_CODEC_OPUS = 0
++USE_CODEC_OPUS = 1
  # either xmp or mikmod (or modplug)
--USE_CODEC_MIKMOD=0
-+USE_CODEC_MIKMOD=1
- USE_CODEC_XMP=0
--USE_CODEC_MODPLUG=0
--USE_CODEC_UMX=0
-+USE_CODEC_MODPLUG=1
-+USE_CODEC_UMX=1
+ USE_CODEC_MIKMOD = 0
+ USE_CODEC_XMP = 0
+-USE_CODEC_MODPLUG = 0
+-USE_CODEC_UMX = 0
++USE_CODEC_MODPLUG = 1
++USE_CODEC_UMX = 1
  
  # which library to use for mp3 decoding: mad or mpg123
- MP3LIB=mad
-diff -up vkQuake-1.20.3/Quake/mimalloc/heap.c.omv~ vkQuake-1.20.3/Quake/mimalloc/heap.c
---- vkQuake-1.20.3/Quake/mimalloc/heap.c.omv~	2022-09-12 03:46:04.534000680 +0200
-+++ vkQuake-1.20.3/Quake/mimalloc/heap.c	2022-09-12 03:46:34.013180158 +0200
-@@ -31,14 +31,14 @@ static bool mi_heap_visit_pages(mi_heap_
-   #if MI_DEBUG>1
-   size_t total = heap->page_count;
-   #endif
--  size_t count = 0;
-+  //size_t count = 0;
-   for (size_t i = 0; i <= MI_BIN_FULL; i++) {
-     mi_page_queue_t* pq = &heap->pages[i];
-     mi_page_t* page = pq->first;
-     while(page != NULL) {
-       mi_page_t* next = page->next; // save next in case the page gets removed from the queue
-       mi_assert_internal(mi_page_heap(page) == heap);
--      count++;
-+      //count++;
-       if (!fn(heap, pq, page, arg1, arg2)) return false;
-       page = next; // and continue
-     }
-@@ -496,9 +496,9 @@ static bool mi_heap_area_visit_blocks(co
-   uintptr_t free_map[MI_MAX_BLOCKS / sizeof(uintptr_t)];
-   memset(free_map, 0, sizeof(free_map));
- 
--  size_t free_count = 0;
-+  //size_t free_count = 0;
-   for (mi_block_t* block = page->free; block != NULL; block = mi_block_next(page,block)) {
--    free_count++;
-+    //free_count++;
-     mi_assert_internal((uint8_t*)block >= pstart && (uint8_t*)block < (pstart + psize));
-     size_t offset = (uint8_t*)block - pstart;
-     mi_assert_internal(offset % bsize == 0);
-@@ -511,7 +511,7 @@ static bool mi_heap_area_visit_blocks(co
-   mi_assert_internal(page->capacity == (free_count + page->used));
- 
-   // walk through all blocks skipping the free ones
--  size_t used_count = 0;
-+  //size_t used_count = 0;
-   for (size_t i = 0; i < page->capacity; i++) {
-     size_t bitidx = (i / sizeof(uintptr_t));
-     size_t bit = i - (bitidx * sizeof(uintptr_t));
-@@ -520,7 +520,7 @@ static bool mi_heap_area_visit_blocks(co
-       i += (sizeof(uintptr_t) - 1); // skip a run of free blocks
-     }
-     else if ((m & ((uintptr_t)1 << bit)) == 0) {
--      used_count++;
-+      //used_count++;
-       uint8_t* block = pstart + (i * bsize);
-       if (!visitor(mi_page_heap(page), area, block, ubsize, arg)) return false;
-     }
-diff -up vkQuake-1.20.3/Quake/mimalloc/page.c.omv~ vkQuake-1.20.3/Quake/mimalloc/page.c
---- vkQuake-1.20.3/Quake/mimalloc/page.c.omv~	2022-09-12 03:44:24.716393357 +0200
-+++ vkQuake-1.20.3/Quake/mimalloc/page.c	2022-09-12 03:45:24.991760016 +0200
-@@ -664,12 +664,12 @@ static void mi_page_init(mi_heap_t* heap
- static mi_page_t* mi_page_queue_find_free_ex(mi_heap_t* heap, mi_page_queue_t* pq, bool first_try)
- {
-   // search through the pages in "next fit" order
--  size_t count = 0;
-+  //size_t count = 0;
-   mi_page_t* page = pq->first;
-   while (page != NULL)
-   {
-     mi_page_t* next = page->next; // remember next
--    count++;
-+    //count++;
- 
-     // 0. collect freed blocks by us and other threads
-     _mi_page_free_collect(page, false);
-diff -up vkQuake-1.20.3/Quake/mimalloc/segment.c.omv~ vkQuake-1.20.3/Quake/mimalloc/segment.c
---- vkQuake-1.20.3/Quake/mimalloc/segment.c.omv~	2022-09-12 03:44:08.584295268 +0200
-+++ vkQuake-1.20.3/Quake/mimalloc/segment.c	2022-09-12 03:45:51.700922564 +0200
-@@ -921,7 +921,7 @@ static void mi_segment_free(mi_segment_t
-   // Remove the free pages
-   mi_slice_t* slice = &segment->slices[0];
-   const mi_slice_t* end = mi_segment_slices_end(segment);
--  size_t page_count = 0;
-+  //size_t page_count = 0;
-   while (slice < end) {
-     mi_assert_internal(slice->slice_count > 0);
-     mi_assert_internal(slice->slice_offset == 0);
-@@ -929,7 +929,7 @@ static void mi_segment_free(mi_segment_t
-     if (slice->xblock_size == 0 && segment->kind != MI_SEGMENT_HUGE) {
-       mi_segment_span_remove_from_queue(slice, tld);
-     }
--    page_count++;
-+    //page_count++;
-     slice = slice + slice->slice_count;
-   }
-   mi_assert_internal(page_count == 2); // first page is allocated by the segment itself
+ MP3LIB = mad
