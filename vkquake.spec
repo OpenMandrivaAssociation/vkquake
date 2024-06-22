@@ -1,7 +1,6 @@
 %define _empty_manifest_terminate_build 0
 %global optflags %{optflags} -O3 -Wno-error=unused-but-set-variable
 %global optflags %{optflags} -Wno-error -Wno-implicit-const-int-float-conversion
-%global optflags %{optflags} -Wno-unknown-pragmas
 
 Name:		vkquake
 Version:	1.31.0
@@ -14,6 +13,7 @@ Source:		https://github.com/Novum/vkQuake/archive/%{version}/vkQuake-%{version}.
 Source100:	appdata.xml
 Source101:	%{name}.desktop
 Patch0:		vkquake-compile.patch
+Patch1:     https://github.com/Novum/vkQuake/commit/f1a54fbdf403f0b2f54dd89879b82e68d5f08fcf.patch
 
 BuildRequires:	meson
 BuildRequires:	pkgconfig(vulkan)
