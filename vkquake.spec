@@ -1,5 +1,6 @@
 %define _empty_manifest_terminate_build 0
 %global optflags %{optflags} -O3 -Wno-error=unused-but-set-variable
+%global optflags %{optflags} -Wno-error -Wno-implicit-const-int-float-conversion
 
 Name:		vkquake
 Version:	1.31.0
