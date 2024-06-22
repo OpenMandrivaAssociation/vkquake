@@ -2,8 +2,8 @@
 %global optflags %{optflags} -O3 -Wno-error=unused-but-set-variable
 
 Name:		vkquake
-Version:	1.30.1
-Release:	2
+Version:	1.31.0
+Release:	1
 Summary:	Quake 1 port using Vulkan instead of OpenGL for rendering
 License:	GPL-2.0-or-later
 Group:		Games
