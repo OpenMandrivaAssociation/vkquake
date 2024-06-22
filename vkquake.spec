@@ -13,7 +13,6 @@ Source:		https://github.com/Novum/vkQuake/archive/%{version}/vkQuake-%{version}.
 Source100:	appdata.xml
 Source101:	%{name}.desktop
 Patch0:		vkquake-compile.patch
-Patch1:     fix-bad-char-in-pragma.patch
 
 BuildRequires:	meson
 BuildRequires:	pkgconfig(vulkan)
