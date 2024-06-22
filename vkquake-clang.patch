@@ -1,0 +1,21 @@
+diff -up vkQuake-1.31.0/Quake/mem.c.omv~ vkQuake-1.31.0/Quake/mem.c
+--- vkQuake-1.31.0/Quake/mem.c.omv~	2024-06-22 17:26:41.489270968 +0200
++++ vkQuake-1.31.0/Quake/mem.c	2024-06-22 17:27:39.089837406 +0200
+@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place - Suit
+ 
+ #if defined(USE_MI_MALLOC)
+ 
+-#if defined(__GNUC__) && (__GNUC__ >= 12)
++#if defined(__GNUC__) && (__GNUC__ >= 12) && !defined(__clang__)
+ #pragma GCC diagnostic push
+ #pragma GCC diagnostic ignored "-Wstringop-overflow" +
+ #pragma message "ignore stringop-overflow warnings for mimalloc v2.14+"
+@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suit
+ #define vsnprintf q_vsnprintf
+ #include "mimalloc/static.c"
+ 
+-#if defined(__GNUC__) && (__GNUC__ >= 12)
++#if defined(__GNUC__) && (__GNUC__ >= 12) && !defined(__clang__)
+ #pragma GCC diagnostic pop // Restore warnings on GCC
+ #endif
+ 

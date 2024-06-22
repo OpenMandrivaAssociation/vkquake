@@ -12,9 +12,6 @@ URL:		https://github.com/Novum/vkQuake
 Source:		https://github.com/Novum/vkQuake/archive/%{version}/vkQuake-%{version}.tar.gz
 Source100:	appdata.xml
 Source101:	%{name}.desktop
-Patch0:		vkquake-compile.patch
-Patch1:     https://github.com/Novum/vkQuake/commit/f1a54fbdf403f0b2f54dd89879b82e68d5f08fcf.patch
-
 BuildRequires:	meson
 BuildRequires:	pkgconfig(vulkan)
 BuildRequires:	pkgconfig(flac)
@@ -27,6 +24,11 @@ BuildRequires:	pkgconfig(vorbis)
 BuildRequires:	pkgconfig(libmodplug)
 BuildRequires:	glslang
 BuildRequires:	spirv-tools
+
+%patchlist
+vkquake-compile.patch
+vkquake-clang.patch
+https://github.com/Novum/vkQuake/commit/f1a54fbdf403f0b2f54dd89879b82e68d5f08fcf.patch
 
 %description
 vkQuake is a Quake 1 port using Vulkan instead of OpenGL for rendering. 
