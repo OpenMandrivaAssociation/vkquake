@@ -3,7 +3,7 @@
 %global optflags %{optflags} -Wno-error -Wno-implicit-const-int-float-conversion
 
 Name:		vkquake
-Version:	1.31.1.1
+Version:	1.31.2
 Release:	1
 Summary:	Quake 1 port using Vulkan instead of OpenGL for rendering
 License:	GPL-2.0-or-later
