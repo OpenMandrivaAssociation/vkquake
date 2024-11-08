@@ -26,7 +26,7 @@ BuildRequires:	glslang
 BuildRequires:	spirv-tools
 
 %patchlist
-vkquake-compile.patch
+#vkquake-compile.patch
 vkquake-clang.patch
 
 %description
