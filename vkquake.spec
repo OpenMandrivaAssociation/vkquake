@@ -27,7 +27,7 @@ BuildRequires:	spirv-tools
 
 %patchlist
 #vkquake-compile.patch
-vkquake-clang.patch
+#vkquake-clang.patch
 
 %description
 vkQuake is a Quake 1 port using Vulkan instead of OpenGL for rendering. 
