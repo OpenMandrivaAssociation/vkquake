@@ -3,7 +3,7 @@
 %global optflags %{optflags} -Wno-error -Wno-implicit-const-int-float-conversion
 
 Name:		vkquake
-Version:	1.34.1
+Version:	1.35.0
 Release:	1
 Summary:	Quake 1 port using Vulkan instead of OpenGL for rendering
 License:	GPL-2.0-or-later
@@ -35,7 +35,7 @@ It is based on the popular QuakeSpasm port and runs all mods compatible with it 
 Game data must be placed in ~/.vkquake/id1 .
 
 %prep
-%autosetup -p1 -n vkQuake-%{version}
+%autosetup -p1 -n vkQuake-1.35.0
 
 # Drop pre-compiled Windows stuff
 rm -rf Windows
