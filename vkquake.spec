@@ -13,13 +13,14 @@ Source:		https://github.com/Novum/vkQuake/archive/%{version}/vkQuake-%{version}.
 Source100:	appdata.xml
 Source101:	%{name}.desktop
 BuildRequires:	meson
+BuildRequires:  cmake
 BuildRequires:	pkgconfig(vulkan)
 BuildRequires:	pkgconfig(flac)
 BuildRequires:	pkgconfig(mad)
 BuildRequires:	pkgconfig(libmikmod)
 BuildRequires:	pkgconfig(opus)
 BuildRequires:	pkgconfig(opusfile)
-BuildRequires:	pkgconfig(sdl2)
+BuildRequires:	pkgconfig(sdl3)
 BuildRequires:	pkgconfig(vorbis)
 BuildRequires:	pkgconfig(libmodplug)
 BuildRequires:	glslang
@@ -35,7 +36,7 @@ It is based on the popular QuakeSpasm port and runs all mods compatible with it 
 Game data must be placed in ~/.vkquake/id1 .
 
 %prep
-%autosetup -p1 -n vkQuake-1.35.0
+%autosetup -p1 -n vkQuake-%{version}
 
 # Drop pre-compiled Windows stuff
 rm -rf Windows
